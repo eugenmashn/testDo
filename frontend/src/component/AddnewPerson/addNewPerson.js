@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import {Link} from "react-router-dom";
 
 const customStyles = {
     content : {
@@ -17,28 +18,66 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export class AddnewPersan extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            modalIsOpen: true
+            modalIsOpen: true,
+            name:'name',
+            surname:'surname',
+            day:0,
+            newElem:{
+                name:'',
+                surname:'',
+                day:0
+            }
         };
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.onChangeSurname=this.onChangeSurname.bind(this);
+        this.onChangeName=this.onChangeName.bind(this);
+        this.onChangeDay=this.onChangeDay.bind(this);
     }
 
     openModal() {
         this.setState({modalIsOpen: true});
     }
 
+    onChangeName(e){
+        this.setState({
+            name:e.target.value,
+
+        });
+    }
+    onChangeSurname(e){
+        this.setState({
+            surname:e.target.value,
+
+        });
+    }
+    onChangeDay(e){
+        this.setState({
+            day:e.target.value,
+
+        });
+    }
 
 
     closeModal() {
+
+        this.props.addNewPersonAction({
+            id:new Date().valueOf(),
+            name:this.state.name,
+            surname:this.state.surname,
+            numberHolidays:this.state.day,
+        });
         this.setState({modalIsOpen: false});
+
     }
 
     render() {
+
         return (
             <div>
 
@@ -49,11 +88,12 @@ export class AddnewPersan extends React.Component {
                     contentLabel="Example Modal"
                 >
 
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
+
                     <form>
-                        <input />
-                        <button>Add</button>
+                        <input name='name' onChange={this.onChangeName} type='text' value={this.state.name}/>
+                        <input name='surname' type='text'onChange={this.onChangeSurname} value={this.state.surname}/>
+                        <input name='day' type='number'onChange={this.onChangeDay} value={this.state.day}/>
+                        <Link to="/"><button onClick={this.closeModal}>Add</button></Link>
                     </form>
                 </Modal>
             </div>

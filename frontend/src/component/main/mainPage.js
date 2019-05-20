@@ -3,7 +3,9 @@ import './mainPage.css';
 import {Route, Router, Switch} from "react-router";
 import AboutWorker from "../AboutWorker/aboutWorker";
 import {Link} from "react-router-dom";
-import {AddnewPersan} from "../AddnewPerson/addNewPerson";
+import AddnewPersanContainer from "../AddnewPerson/addContainer";
+
+
 class MainPage extends React.Component{
   constructor(props){
     super(props);
@@ -21,7 +23,8 @@ class MainPage extends React.Component{
       </ul>
       <Link to='/add'> <button>Додавання до списку </button></Link>
       <Switch>
-        <Route exact path='/add' component={AddnewPersan}/>
+
+        <Route  path='/add' render={()=> < AddnewPersanContainer/>}/>
         <Route path='/:id'  render={(props)=> <AboutWorker number={parseInt(props.match.params.id)} mainPage={this.props.mainPage} {...props} />}/>
       </Switch>
     </div>

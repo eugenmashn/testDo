@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import MainPage from './component/main/mainPage';
 import * as serviceWorker from './serviceWorker';
-import MainConstruct from "./component/main/Main.Conteiner";
+import MainConstruct from "./component/main/MainConteiner";
 import store from "./redux/store";
 import {Provider} from "react-redux";
 import {BrowserRouter } from "react-router-dom";
