@@ -25,7 +25,7 @@ class MainPage extends React.Component{
       <Switch>
 
         <Route  path='/add' render={()=> < AddnewPersanContainer/>}/>
-        <Route path='/:id'  render={(props)=> <AboutWorker number={parseInt(props.match.params.id)} mainPage={this.props.mainPage} {...props} />}/>
+        <Route path='/:id'  render={(props)=> <AboutWorker  mainPage={this.props.mainPage} {...props} />}/>
       </Switch>
     </div>
   }
