@@ -5,13 +5,15 @@ import connect from "react-redux/es/connect/connect";
 let mapStateToProps=(state)=>{
 
     return{
-        mainPage:state
+        mainPage:state.mainPage,
 
     }
 };
 let mapDispatchTooProps=(dispatch)=>{
+
     return {
         DATECHOIC:(newElem)=>{
+
             dispatch(DATECHOIC(newElem))
         }
     }

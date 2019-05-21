@@ -1,9 +1,9 @@
 import React from 'react'
 import './mainPage.css';
 import {Route, Router, Switch} from "react-router";
-import AboutWorker from "../AboutWorker/aboutWorker";
 import {Link} from "react-router-dom";
 import AddnewPersanContainer from "../AddnewPerson/addContainer";
+import ChoiceElem from "../AboutWorker/aboutContainer";
 
 
 class MainPage extends React.Component{
@@ -25,7 +25,7 @@ class MainPage extends React.Component{
       <Switch>
 
         <Route  path='/add' render={()=> < AddnewPersanContainer/>}/>
-        <Route path='/:id'  render={(props)=> <AboutWorker  mainPage={this.props.mainPage} {...props} />}/>
+        <Route path='/:id'  render={(props)=> <ChoiceElem {...props} />}/>
       </Switch>
     </div>
   }

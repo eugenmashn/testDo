@@ -30,7 +30,8 @@ export class AddnewPersan extends React.Component {
                 name:'',
                 surname:'',
                 day:0
-            }
+            },
+            year:2011
         };
 
         this.openModal = this.openModal.bind(this);
@@ -38,6 +39,7 @@ export class AddnewPersan extends React.Component {
         this.onChangeSurname=this.onChangeSurname.bind(this);
         this.onChangeName=this.onChangeName.bind(this);
         this.onChangeDay=this.onChangeDay.bind(this);
+        this.onChangeYear=this.onChangeYear.bind(this);
     }
 
     openModal() {
@@ -71,9 +73,17 @@ export class AddnewPersan extends React.Component {
             name:this.state.name,
             surname:this.state.surname,
             numberHolidays:this.state.day,
+            dateStart:new Date(),
+            dateFinish:new Date(),
+            year:2017
         });
         this.setState({modalIsOpen: false});
 
+    }
+    onChangeYear(e){
+        this.setState({
+            year:e.target.value
+        })
     }
 
     render() {
@@ -93,6 +103,7 @@ export class AddnewPersan extends React.Component {
                         <input name='name' onChange={this.onChangeName} type='text' value={this.state.name}/>
                         <input name='surname' type='text'onChange={this.onChangeSurname} value={this.state.surname}/>
                         <input name='day' type='number'onChange={this.onChangeDay} value={this.state.day}/>
+                        <input name='year'type='number'min='2011' value={this.state.year}/>
                         <Link to="/"><button onClick={this.closeModal}>Add</button></Link>
                     </form>
                 </Modal>

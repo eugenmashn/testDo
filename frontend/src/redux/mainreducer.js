@@ -1,35 +1,41 @@
 export const NEW_PERSON='NEWPERSON';
 export const DATE_CHOICE='DATECHOICE';
+export const USING_WEEK='USINGWEEK';
 let initialState=[{
     id:0,
     name:'Eugen',
     surname:'Mashniskuy',
-    numberHolidays:25,
+    numberHolidays:3,
     dateStart:new Date(),
     dateFinish:new Date(),
+    RegistArry:[],
     year:2019
 },{
     id:1,
     name:'Pavel',
     surname:'Mashniskuy',
-    numberHolidays:20,
+    numberHolidays:5,
     dateStart:new Date(),
     dateFinish:new Date(),
+    RegistArry:[]
+    ,
     year:2019
 },{
     id:2,
     name:'Dmitry',
     surname:'Velikiy',
-    numberHolidays:15,
+    numberHolidays:6,
     dateStart:new Date(),
     dateFinish:new Date(),
+    RegistArry:[],
+
     year:2019
 },{id:3,
     name:'Oleks',
     surname:'Petrenko',
     numberHolidays:10,
-    dateStart:new Date(),
-    dateFinish:new Date(),
+
+    RegistArry:[],
     year:2019
 }];
 const ListReducer=(state=initialState,action)=>{
@@ -39,13 +45,17 @@ const ListReducer=(state=initialState,action)=>{
         case DATE_CHOICE:
             let index=0;
 
-            state.findIndex((elem)=>{
-                index++;
-                return elem.id===action.id
+            index=state.findIndex((elem)=>{
+
+                return elem.id===action.user.id
             });
-            let newState=state.splice(index-1,1,action.user);
+            let newState=[...state.slice(0,index),action.user,...state.slice(index+1)];
 
             return newState;
+        case USING_WEEK:{
+
+
+        }
         default:
             return state;
     }};
@@ -57,4 +67,9 @@ export const  DATECHOIC=(user)=>({
     type :DATE_CHOICE,
     user
 });
+export const UsingWeek=user=>({
+   type:USING_WEEK,
+   user
+});
+
 export default ListReducer;
