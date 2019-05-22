@@ -12,13 +12,14 @@ constructor(props){
      this.state={
       DateOne: new Date(),
       DateTwo: new Date(),
-      Chackmini:true,
+
     };
     this.onChangeDateOne=this.onChangeDateOne.bind(this);
     this.onChangeDateTwo=this.onChangeDateTwo.bind(this);
     this.Restrct=this.Restrct.bind(this);
     this.onClickBtn=this.onClickBtn.bind(this);
     this.Cover=this.Cover.bind(this);
+    this.onClickBtnChange=this.onClickBtnChange.bind(this);
     // this.FormFunc=this.FormFunc.bind(this);
     // this.DontHaveForm=this.DontHaveForm.bind(this);
 }
@@ -52,6 +53,7 @@ onChangeDateTwo(date){
 onClickBtn(){
 
    this.props.DATECHOIC(
+
        {
            id:this.index,
            name:this.props.mainPage[this.index].name,
@@ -60,12 +62,32 @@ onClickBtn(){
            RegistArry:[...this.props.mainPage[this.index].RegistArry,{
                dateStart:this.state.DateOne,
                dateFinish:this.state.DateTwo,
-               chack:this.props.mainPage[this.index].chack
+               chack:false
            }],
            year:2019}
        );
-
+    debugger;
 }
+onClickBtnChange(i){
+    let indexTwo=this.props.mainPage[this.index].RegistArry.findIndex((a)=>{ return i.dateFinish===a.dateFinish});
+    let newTruck={
+        dateStart:i.dateStart,
+        dateFinish:i.dateFinish,
+        chack:true
+    };
+    debugger;
+    this.props.USING_WEEK(
+
+        {
+            id:this.index,
+            name:this.props.mainPage[this.index].name,
+            surname:this.props.mainPage[this.index].surname,
+            numberHolidays:this.props.mainPage[this.index].numberHolidays-this.calculateDaysLeft(this.state.DateOne,this.state.DateTwo),
+            RegistArry:[...this.props.mainPage[this.index].RegistArry.slice(0,indexTwo),newTruck,...this.props.mainPage[this.index].RegistArry.slice(indexTwo+1)],
+            year:2019}
+    );
+}
+
 
 
 Cover(){
@@ -83,8 +105,8 @@ Cover(){
                     onChange={this.onChangeDateTwo}
                 />
 
-                    <Link to='/'><button onClick={this.onClickBtn}>Затвердити</button></Link>
-                    <Link to='/'> <button>Back</button></Link>
+                    <Link to='/'><button className='btn' onClick={this.onClickBtn}>Затвердити</button></Link>
+
 
                 </form>
             </div>
@@ -97,19 +119,24 @@ Cover(){
 
 render(){
   return(
-      <div>
+      <div className='container' >
+          <div>
+          <div className='container1'>
           <h1>{this.props.mainPage[this.index].name}</h1>
           <h1>{this.props.mainPage[this.index].surname}</h1>
+          </div>
           <h1> Днів залишелось: {this.props.mainPage[this.index].numberHolidays}</h1>
           <h1>Рік {this.props.mainPage[this.index].year}</h1>
           <ul>{this.props.mainPage[this.index].RegistArry.map((i)=>{
+
           return (
-              <li className={(this.state.Chackmini?'lineTrue' :'' )}>Початок : {i.dateStart.toLocaleDateString()} Кінець:{i.dateFinish.toLocaleDateString()}
-                  <input type='checkbox'/> </li>)
+              <li className={(i.chack?'lineTrue' :'' )}>Початок : {i.dateStart.toLocaleDateString()} Кінець:{i.dateFinish.toLocaleDateString()}
+                  <input type='checkbox' value={i.chack} onClick={()=>{this.onClickBtnChange(i)}}/> </li>)
       })} </ul>
           {this.Cover()}
 
-          <Link to='/'> <button>Back</button></Link>
+          <Link to='/'> <button className='btn'>Back</button></Link>
+          </div>
       </div>
   )}
 };

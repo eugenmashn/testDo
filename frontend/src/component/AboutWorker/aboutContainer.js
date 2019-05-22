@@ -1,4 +1,4 @@
-import { DATECHOIC} from "../../redux/mainreducer";
+import {DATECHOIC, USING_WEEK, UsingWeek} from "../../redux/mainreducer";
 import AboutWorker from "./aboutWorker";
 import connect from "react-redux/es/connect/connect";
 
@@ -15,6 +15,9 @@ let mapDispatchTooProps=(dispatch)=>{
         DATECHOIC:(newElem)=>{
 
             dispatch(DATECHOIC(newElem))
+        },
+        USING_WEEK:(newElem)=>{
+            dispatch(UsingWeek(newElem))
         }
     }
 };
