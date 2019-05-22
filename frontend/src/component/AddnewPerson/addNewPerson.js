@@ -31,6 +31,7 @@ export class AddnewPersan extends React.Component {
                 surname:'',
                 day:0
             },
+
             year:2011
         };
 
@@ -75,6 +76,7 @@ export class AddnewPersan extends React.Component {
             numberHolidays:this.state.day,
             dateStart:new Date(),
             dateFinish:new Date(),
+            RegistArry:[],
             year:2017
         });
         this.setState({modalIsOpen: false});
@@ -103,7 +105,7 @@ export class AddnewPersan extends React.Component {
                         <input name='name' onChange={this.onChangeName} type='text' value={this.state.name}/>
                         <input name='surname' type='text'onChange={this.onChangeSurname} value={this.state.surname}/>
                         <input name='day' type='number'onChange={this.onChangeDay} value={this.state.day}/>
-                        <input name='year'type='number'min='2011' value={this.state.year}/>
+                        <input name='year'type='number'min='2011' onChange={this.onChangeYear} value={this.state.year}/>
                         <Link to="/"><button onClick={this.closeModal}>Add</button></Link>
                     </form>
                 </Modal>
