@@ -1,4 +1,4 @@
-# lab2.oc
+Тестовое задание
 ![](One.png)
 ![](Two.png)
 ![](Tree.png)
