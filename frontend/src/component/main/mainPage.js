@@ -23,7 +23,7 @@ class MainPage extends React.Component{
     this.props.dntFilter();
   }
   render() {
-    return <div>
+    return <div className='containerOne'>
 
       <ul>
       {this.props.mainPage.map((i)=>{
@@ -32,11 +32,13 @@ class MainPage extends React.Component{
       })}
 
       </ul>
-      <Link to='/add'> <button>Додавання до списку </button></Link>
-      <button onClick={this.onClickTs}>2019</button>
-      <button onClick={this.onClickTe}>2018</button>
-      <button onClick={this.onClickTO}>2018-2019</button>
 
+        <div>
+      <Link to='/add'> <button className='btnT'>Додавання до списку </button></Link>
+      <button className='btnT' onClick={this.onClickTs}>2019</button>
+      <button  className='btnT' onClick={this.onClickTe}>2018</button>
+      <button  className='btnT' onClick={this.onClickTO}>2018-2019</button>
+        </div>
       <Switch>
 
         <Route  path='/add' render={()=> < AddnewPersanContainer/>}/>
