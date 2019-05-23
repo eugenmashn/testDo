@@ -15,6 +15,7 @@ constructor(props){
 
     };
     this.onChangeDateOne=this.onChangeDateOne.bind(this);
+
     this.onChangeDateTwo=this.onChangeDateTwo.bind(this);
     this.Restrct=this.Restrct.bind(this);
     this.onClickBtn=this.onClickBtn.bind(this);
@@ -55,7 +56,7 @@ onClickBtn(){
    this.props.DATECHOIC(
 
        {
-           id:this.index,
+           id:this.props.mainPage[this.index].id,
            name:this.props.mainPage[this.index].name,
            surname:this.props.mainPage[this.index].surname,
            numberHolidays:this.props.mainPage[this.index].numberHolidays-this.calculateDaysLeft(this.state.DateOne,this.state.DateTwo),
@@ -69,6 +70,7 @@ onClickBtn(){
     debugger;
 }
 onClickBtnChange(i){
+    debugger;
     let indexTwo=this.props.mainPage[this.index].RegistArry.findIndex((a)=>{ return i.dateFinish===a.dateFinish});
     let newTruck={
         dateStart:i.dateStart,
@@ -79,7 +81,7 @@ onClickBtnChange(i){
     this.props.USING_WEEK(
 
         {
-            id:this.index,
+            id:this.props.mainPage[this.index].id,
             name:this.props.mainPage[this.index].name,
             surname:this.props.mainPage[this.index].surname,
             numberHolidays:this.props.mainPage[this.index].numberHolidays-this.calculateDaysLeft(this.state.DateOne,this.state.DateTwo),

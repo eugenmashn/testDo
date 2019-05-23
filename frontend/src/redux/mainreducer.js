@@ -61,13 +61,14 @@ const ListReducer=(state=initialState,action)=>{
                 return elem.id===action.user.id
             });
             let newState=[...state.slice(0,index),action.user,...state.slice(index+1)];
-
+            debugger;
             return newState;
         case USING_WEEK:{
             let index=state.findIndex((elem)=>{
 
                 return elem.id===action.user.id
             });
+            debugger;
             return [...state.slice(0,index),action.user,...state.slice(index+1)]    }
         case FILTER_YEAR:{
             initialState=[...state];
